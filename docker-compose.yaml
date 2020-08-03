@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  mongodb:
+    image: mongo:4
+    ports:
+      - '27017:27017' # expose 27017 on host and sent to 27017 on container
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin
+  mongoclient:
+    image: mongoclient/mongoclient
+    ports:
+      - '3000:3000'
+    links:
+      - 'mongodb:mongodb'
